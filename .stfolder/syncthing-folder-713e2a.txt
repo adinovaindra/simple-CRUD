@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: xs3dt-womdx
+created: 2026-05-08T19:47:02+07:00
