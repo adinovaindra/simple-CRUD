@@ -1,5 +1,5 @@
+const { showAllPilots } = require("../repositories/pilotRepositories");
 const {
-  showAllPilots,
   verifyId,
   addNewPilot,
   editPilotExisted,
@@ -21,13 +21,13 @@ const getAllPilot = async (req, res) => {
 };
 
 const getPilotById = async (req, res) => {
-  const ID = Number(req.params.id);
-  const selectedPilot = await verifyId(ID);
+  const id = Number(req.params.id);
+  const selectedPilot = await verifyId(id);
 
-  const { id, nama, jamTerbang } = { ...selectedPilot };
+  const { nama, jamTerbang } = { ...selectedPilot };
 
   res.status(200).json({
-    message: `Pilot dengan ID ${ID} ditemukan!`,
+    pesan: `Pilot dengan ID ${id} ditemukan!`,
     Id: id,
     Nama: nama,
     "Jam Terbang": jamTerbang,
@@ -35,58 +35,28 @@ const getPilotById = async (req, res) => {
 };
 
 const addPilot = async (req, res) => {
-  const nama = req.body.nama?.trim();
+  const nama = req.body.nama;
   const jamTerbang = Number(req.body.jamTerbang);
 
   const pilotAdded = await addNewPilot(nama, jamTerbang);
 
   res.status(201).json({
-    message: `Pilot ${nama} berhasil ditambahkan!`,
+    pesan: `Pilot ${nama} berhasil ditambahkan!`,
     pilotAdded,
   });
 };
 
 const editPilot = async (req, res) => {
   const id = Number(req.params.id);
-  const nama = req.body.nama?.trim();
+  const nama = req.body.nama;
   const jamTerbang = Number(req.body.jamTerbang);
 
-  const pilotEdited = await editPilotExisted(id, nama, jamTerbang);
+  const { pesan, selectedPilot } = await editPilotExisted(id, nama, jamTerbang);
 
-  const { oldPilotData, selectedPilot } = { ...pilotEdited };
-  if (
-    oldPilotData.nama === selectedPilot.nama &&
-    selectedPilot.jamTerbang !== oldPilotData.jamTerbang
-  ) {
-    res.status(200).json({
-      pesan: "Jam terbang berhasil dirubah",
-      selectedPilot,
-    });
-  } else if (
-    oldPilotData.nama !== selectedPilot.nama &&
-    selectedPilot.jamTerbang === oldPilotData.jamTerbang
-  ) {
-    res.status(200).json({
-      pesan: "Nama pilot berhasil dirubah",
-      selectedPilot,
-    });
-  } else if (
-    oldPilotData.nama == selectedPilot.nama &&
-    selectedPilot.jamTerbang === oldPilotData.jamTerbang
-  ) {
-    res.status(200).json({
-      pesan: "Tidak ada perubahan data!",
-      selectedPilot,
-    });
-  } else if (
-    oldPilotData.nama !== selectedPilot.nama &&
-    selectedPilot.jamTerbang !== oldPilotData.jamTerbang
-  ) {
-    res.status(200).json({
-      pesan: "Perubahan data berhasil!",
-      selectedPilot,
-    });
-  }
+  res.status(200).json({
+    pesan,
+    selectedPilot,
+  });
 };
 
 const deletePilot = async (req, res) => {

@@ -1,7 +1,8 @@
+
 require("dotenv").config();
 const express = require("express");
 const authRouter = require("./routes/authRoutes");
-const prisma = require("./prisma");
+const prisma = require("./config/db");
 const pilotRouter = require("./routes/pilotRoutes");
 
 const app = express();
