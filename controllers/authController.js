@@ -1,4 +1,3 @@
-const { findRegisteredEmail } = require("../repositories/pilotRepositories");
 const {
   registerNewUser,
   loginRegisteredUser,

@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { findRegisteredEmail } = require("../repositories/pilotRepositories");
+const { findRegisteredEmail } = require("../repositories/authRepositories");
 const { createNewUser } = require("../repositories/authRepositories");
 
 const registerNewUser = async (email, nama, password) => {

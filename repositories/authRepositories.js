@@ -6,6 +6,7 @@ const findRegisteredEmail = async (email) => {
       email,
     },
   });
+  return registeredEmail
 };
 
 const createNewUser = async (email, nama, password) => {
