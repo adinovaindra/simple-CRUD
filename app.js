@@ -1,12 +1,16 @@
-
 require("dotenv").config();
 const express = require("express");
 const authRouter = require("./routes/authRoutes");
 const prisma = require("./config/db");
 const pilotRouter = require("./routes/pilotRoutes");
+const swaggerUi = require("swagger-ui-express");
+const swaggerSpec = require("./config/swagger");
 
 const app = express();
 app.use(express.json());
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
 app.use("/auth", authRouter);
 
 prisma
@@ -42,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.send(`Halo saya kembali`);
+  res.redirect("/api-docs");
 });
 
 app.use("/pilot", pilotRouter);
