@@ -2,7 +2,7 @@
 
 A RESTful API for managing pilot data at Indonesia Airlines. This API supports full CRUD operations for pilot records, with JWT-based authentication to ensure only authorized users can access and manage pilot data.
 
-**Base URL:** `https://simple-crud-production-768f.up.railway.app`
+**Base URL:** `https://simple-crud-production-85eb.up.railway.app`
 
 ---
 
@@ -14,6 +14,7 @@ A RESTful API for managing pilot data at Indonesia Airlines. This API supports f
 - **ORM:** Prisma
 - **Authentication:** JWT (JSON Web Token)
 - **Password Hashing:** bcrypt
+- **API Documentation:** Swagger UI (OpenAPI 3.0)
 - **Deployment:** Railway
 
 ---
@@ -283,6 +284,6 @@ All errors follow a consistent format:
 
 ## Live Demo
 
-Base URL: `https://simple-crud-production-768f.up.railway.app`
+Base URL: `https://simple-crud-production-85eb.up.railway.app`
 
 You can test all endpoints using [Postman](https://www.postman.com/) or any HTTP client.
